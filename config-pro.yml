@@ -1,0 +1,13 @@
+config:
+  oa:
+    port: 8080
+  mysql:
+    address: 127.0.0.1
+    port: 3306
+    dbname: oa
+    username: root
+    password: 123456
+    max_conn: 200
+    max_idle_conn: 20
+    timeout: 3s
+  Log_dir: /Users/jianlong/Desktop/tmp/oa

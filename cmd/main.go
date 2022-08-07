@@ -19,3 +19,29 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
+
+// Package cmd
+// @Description:
+package main
+
+import (
+	"fmt"
+	"github.com/frank-cloud-tech/class-oa/config"
+	"github.com/frank-cloud-tech/class-oa/internal/pkg/utils"
+	"github.com/frank-cloud-tech/class-oa/internal/router"
+	"golang.org/x/sync/errgroup"
+)
+
+var (
+	g errgroup.Group
+)
+
+func main() {
+	g.Go(func() error {
+		return router.OARouter.Run(fmt.Sprintf(":%d", config.Config.GetOAPort()))
+	})
+
+	if err := g.Wait(); err != nil {
+		utils.Log.Fatalf("%v", err)
+	}
+}

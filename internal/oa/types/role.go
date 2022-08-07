@@ -19,3 +19,17 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
+
+// Package types
+// @Description:
+package types
+
+import "time"
+
+type Role struct {
+	Id         int
+	Name       string
+	IsDelete   int
+	CreateTime time.Time
+	ModifyTime time.Time
+}

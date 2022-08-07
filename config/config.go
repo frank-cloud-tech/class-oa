@@ -19,3 +19,49 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
+
+// Package config
+// @Description:
+package config
+
+import (
+	"gopkg.in/yaml.v3"
+	"io/ioutil"
+)
+
+import (
+	"flag"
+	"testing"
+)
+
+var env = flag.String("conf", "dev", "配置文件")
+
+// Config 项目配置
+var Config conf
+
+//
+//  init
+//  @Description: 加载并读配置文件
+//
+func init() {
+	Config = loadConfig()
+	testing.Init()
+	flag.Parse()
+}
+
+//
+//  loadConfig
+//  @Description: 加载项目的配置文件, 默认的配置文件和项目的可执行文件同级
+//  @return *Config
+//
+func loadConfig() conf {
+	configFile, err := ioutil.ReadFile("./config-" + *env + ".yml")
+	if err != nil {
+		panic(err)
+	}
+	err = yaml.Unmarshal(configFile, &Config)
+	if err != nil {
+		panic(err)
+	}
+	return Config
+}

@@ -19,3 +19,28 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
+
+// Package types
+// @Description:
+package types
+
+import "time"
+
+type User struct {
+	Id          int
+	Name        string
+	Age         int
+	Gender      string
+	IdentifyNum string
+	PhoneNum    string
+	TelPhoneNum string
+	Address     string
+	Role        string
+	IsDelete    int
+	CreateTime  time.Time
+	ModifyTime  time.Time
+}
+
+func (u *User) GetName() string {
+	return u.Name
+}

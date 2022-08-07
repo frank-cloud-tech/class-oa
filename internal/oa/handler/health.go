@@ -19,3 +19,22 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
+
+// Package handler
+// @Description:
+package handler
+
+import (
+	"github.com/frank-cloud-tech/class-oa/internal/pkg/utils"
+	"github.com/gin-gonic/gin"
+)
+
+func Health(c *gin.Context) {
+	utils.Log.Info("get /health success")
+	c.JSON(200, gin.H{
+		"code":    0,
+		"success": true,
+		"data":    nil,
+		"message": "health is ok",
+	})
+}
