@@ -30,5 +30,5 @@ import (
 )
 
 func init() {
-	RegisterOA(http.MethodGet, "/health", handler.Health)
+	RegisterOAV1(http.MethodGet, "/health", handler.Health)
 }
