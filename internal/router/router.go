@@ -31,7 +31,7 @@ import (
 var OARouter = gin.Default()
 var v1 = OARouter.Group("/api/v1")
 
-func RegisterOA(method, path string, router func(c *gin.Context)) {
+func RegisterOAV1(method, path string, router func(c *gin.Context)) {
 	switch method {
 	case "GET":
 		v1.GET(path, router)
