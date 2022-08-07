@@ -19,3 +19,44 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
+
+// Package config
+// @Description:
+package config
+
+type conf struct {
+	Config config `yaml:"config"`
+}
+
+type config struct {
+	LogDir string `yaml:"Log_dir"`
+	OA     OA     `yaml:"oa"`
+	Mysql  Mysql  `yaml:"mysql"`
+}
+
+type OA struct {
+	Port int `yaml:"port"`
+}
+
+type Mysql struct {
+	Address     string `yaml:"address"`
+	Port        int    `yaml:"port"`
+	DBName      string `yaml:"dbname"`
+	Username    string `yaml:"username"`
+	Password    string `yaml:"password"`
+	MaxConn     int    `yaml:"max_conn"`
+	MaxIdleConn int    `yaml:"max_idle_conn"`
+	Timeout     string `yaml:"timeout"`
+}
+
+func (c *conf) GetMysql() *Mysql {
+	return &c.Config.Mysql
+}
+
+func (c *conf) GetLogDir() string {
+	return c.Config.LogDir
+}
+
+func (c *conf) GetOAPort() int {
+	return c.Config.OA.Port
+}
