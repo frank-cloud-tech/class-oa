@@ -25,12 +25,9 @@ THE SOFTWARE.
 package config
 
 import (
+	"flag"
 	"gopkg.in/yaml.v3"
 	"io/ioutil"
-)
-
-import (
-	"flag"
 	"testing"
 )
 

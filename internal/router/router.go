@@ -25,6 +25,7 @@ THE SOFTWARE.
 package router
 
 import (
+	"github.com/frank-cloud-tech/class-oa/internal/pkg/utils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -49,5 +50,7 @@ func RegisterOAV1(method, path string, router func(c *gin.Context)) {
 		v1.DELETE(path, router)
 	case "TRACE":
 		v1.DELETE(path, router)
+	default:
+		utils.Log.Errorf("router register err: %s", path)
 	}
 }
