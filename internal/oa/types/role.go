@@ -27,9 +27,10 @@ package types
 import "time"
 
 type Role struct {
-	Id         int
-	Name       string
-	IsDelete   int
-	CreateTime time.Time
-	ModifyTime time.Time
+	Id          int
+	Name        string
+	IsDelete    int
+	Permissions []Permission //根据角绑定权限 一对多
+	CreateTime  time.Time
+	ModifyTime  time.Time
 }
