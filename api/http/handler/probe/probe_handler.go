@@ -20,37 +20,25 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-// Package router
+// Package probe
 // @Description:
-package router
+package probe
 
 import (
 	"github.com/frank-cloud-tech/class-oa/internal/pkg/utils"
+	"github.com/frank-cloud-tech/class-oa/pkg/web"
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
-var OARouter = gin.Default()
-var v1 = OARouter.Group("/api/v1")
+func Healthy(c *gin.Context) {
+	utils.Log.Info("get /healthy success")
+	//c.JSON(200, gin.H{
+	//	"code":    0,
+	//	"success": true,
+	//	"data":    nil,
+	//	"message": "health is ok",
+	//})
+	c.JSON(http.StatusOK, web.NewWebSuccess("success"))
 
-func RegisterOAV1(method, path string, router func(c *gin.Context)) {
-	switch method {
-	case "GET":
-		v1.GET(path, router)
-	case "POST":
-		v1.POST(path, router)
-	case "PUT":
-		v1.PUT(path, router)
-	case "DELETE":
-		v1.DELETE(path, router)
-	case "HEAD":
-		v1.DELETE(path, router)
-	case "CONNECT":
-		v1.DELETE(path, router)
-	case "OPTIONS":
-		v1.DELETE(path, router)
-	case "TRACE":
-		v1.DELETE(path, router)
-	default:
-		utils.Log.Errorf("router register err: %s", path)
-	}
 }

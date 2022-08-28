@@ -22,26 +22,24 @@ THE SOFTWARE.
 
 // Package cmd
 // @Description:
+
 package main
 
 import (
-	"fmt"
-	"github.com/frank-cloud-tech/class-oa/config"
-	"github.com/frank-cloud-tech/class-oa/internal/pkg/utils"
-	"github.com/frank-cloud-tech/class-oa/internal/router"
-	"golang.org/x/sync/errgroup"
-)
-
-var (
-	g errgroup.Group
+	"github.com/frank-cloud-tech/class-oa/api/http"
+	"github.com/frank-cloud-tech/class-oa/pkg/proc"
+	"os"
 )
 
 func main() {
-	g.Go(func() error {
-		return router.OARouter.Run(fmt.Sprintf(":%d", config.Config.GetOAPort()))
-	})
 
-	if err := g.Wait(); err != nil {
-		utils.Log.Fatalf("%v", err)
+	server, err := http.NewHTTPServer()
+	if err != nil {
+		os.Exit(1)
 	}
+
+	proc.AddShutdownListener(func() {
+		server.Close()
+	})
+	server.Run()
 }
